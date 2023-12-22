@@ -2,10 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import colorRoutes from "./routes/colorRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import asyncHandler from "./middlewares/asyncHandler.js";
 import serviceRegistrer from "./middlewares/serviceRegistrer.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
+import { sequelize } from "./config/database.js";
 
 dotenv.config();
 const port = process.env.PORT || 8000;
@@ -33,5 +33,9 @@ app.use(function (req, res, next){
 
 app.use(errorMiddleware);
 
+sequelize.sync()
+.then(result => 
+    {console.log(result);
+    app.listen(port, function(){ console.log(`Server is running on port ${port}`)});
+}).catch(err => console.log(err));
 
-app.listen(port, function(){ console.log(`Server is running on port ${port}`)});
