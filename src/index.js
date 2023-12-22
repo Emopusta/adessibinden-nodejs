@@ -33,9 +33,6 @@ app.use(function (req, res, next){
 
 app.use(errorMiddleware);
 
-sequelize.sync()
-.then(result => 
-    {console.log(result);
-    app.listen(port, function(){ console.log(`Server is running on port ${port}`)});
-}).catch(err => console.log(err));
+sequelize.sync().catch(err => console.log(err));
 
+app.listen(port, function(){ console.log(`Server is running on port ${port}`)});
