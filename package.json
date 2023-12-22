@@ -10,8 +10,11 @@
   "author": "Emopusta",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jshashes": "^1.0.8",
+    "jsonwebtoken": "^9.0.2",
     "node-postgres": "^0.6.2",
     "nodemon": "^3.0.2",
     "pg": "^8.11.3",
