@@ -1,5 +1,5 @@
 import { getAllColors, createColor } from "../services/colorService.js";
-import { registerUser, logoutUser, getUserWithEmail, verifyPassword } from "../services/authService.js";
+import { registerUser, logoutUser, getUserWithEmail, verifyPassword, createRefreshToken } from "../services/authService.js";
 
 function colorService(){
     return Object.freeze({
@@ -13,7 +13,8 @@ function authService(){
         registerUser,
         getUserWithEmail,
         logoutUser,
-        verifyPassword
+        verifyPassword,
+        createRefreshToken,
     })
 }
 

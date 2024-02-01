@@ -47,6 +47,7 @@ const RefreshToken = sequelize.define('RefreshToken', {
   },
   CreatedDate: {
     type: DataTypes.DATE,
+    defaultValue: new Date(),
     allowNull: false,
     field: 'CreatedDate'
   },
