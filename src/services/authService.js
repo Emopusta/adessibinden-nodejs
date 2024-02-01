@@ -1,11 +1,11 @@
 import Hashes from "jshashes";
-import { User } from "../models/userModel.js";
+import User from "../models/userModel.js";
 
     export function registerUser(email, password){
         const hmac = new Hashes.SHA512;
         const passwordSalt = hmac.hex(password+email)
         const passwordHash = hmac.hex_hmac(passwordSalt, password);
-        return User.create({email, passwordHash, passwordSalt});
+        return User.create({Email:email, PasswordHash:passwordHash, PasswordSalt:passwordSalt});
     }
 
     export async function verifyPassword(password, hash, salt){

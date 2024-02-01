@@ -1,8 +1,9 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
+import PhoneBrand from './phoneBrandModel.js';
 
 
-const Color = sequelize.define('Color', {
+const PhoneModel = sequelize.define('PhoneModel', {
   Id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -27,12 +28,19 @@ const Color = sequelize.define('Color', {
   Name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     field: 'Name'
+  },
+  BrandId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'BrandId'
   }
 }, {
-  tableName: 'colors',
-  timestamps: false
+  tableName: 'phoneModels',
+  timestamps: false 
 });
 
-export default Color;
+
+PhoneModel.belongsTo(PhoneBrand, { foreignKey: 'BrandId', onDelete: 'SET NULL', as: 'Brand' });
+
+export default PhoneModel;

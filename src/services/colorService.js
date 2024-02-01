@@ -1,4 +1,4 @@
-import { Color } from "../models/colorModel.js"
+import Color from "../models/colorModel.js"
 
 
 

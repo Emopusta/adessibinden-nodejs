@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
 
-const Color = sequelize.define('Color', {
+const PhoneRAM = sequelize.define('PhoneRAM', {
   Id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -24,15 +24,14 @@ const Color = sequelize.define('Color', {
     type: DataTypes.DATE,
     field: 'DeletedDate'
   },
-  Name: {
+  Memory: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
-    field: 'Name'
+    field: 'Memory'
   }
 }, {
-  tableName: 'colors',
+  tableName: 'phoneRAMs',
   timestamps: false
 });
 
-export default Color;
+export default PhoneRAM;

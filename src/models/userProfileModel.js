@@ -1,9 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
-import RefreshToken from './refreshTokenModel.js';
+import User from './userModel.js';
 
-
-const User = sequelize.define('User', {
+const UserProfile = sequelize.define('UserProfile', {
   Id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -13,7 +12,6 @@ const User = sequelize.define('User', {
   },
   CreatedDate: {
     type: DataTypes.DATE,
-    defaultValue: new Date(),
     allowNull: false,
     field: 'CreatedDate'
   },
@@ -25,29 +23,33 @@ const User = sequelize.define('User', {
     type: DataTypes.DATE,
     field: 'DeletedDate'
   },
-  Email: {
+  Address: {
     type: DataTypes.STRING, 
+    field: 'Address'
+  },
+  FirstName: {
+    type: DataTypes.STRING, 
+    field: 'FirstName'
+  },
+  LastName: {
+    type: DataTypes.STRING, 
+    field: 'LastName'
+  },
+  BirthDate: {
+    type: DataTypes.DATE,
+    field: 'BirthDate'
+  },
+  UserId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'Email'
-  },
-  PasswordSalt: {
-    type: DataTypes.STRING, 
-    field: 'PasswordSalt'
-  },
-  PasswordHash: {
-    type: DataTypes.STRING, 
-    field: 'PasswordHash'
-  },
-  Status: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-    field: 'Status'
+    field: 'UserId'
   }
 }, {
-  tableName: 'users',
+  tableName: 'userProfiles',
   timestamps: false 
 });
 
-User.hasMany(RefreshToken, { foreignKey: 'UserId', as: 'RefreshTokens' });
 
-export default User;
+UserProfile.belongsTo(User, { foreignKey: 'UserId', onDelete: 'SET NULL', as: 'User' });
+
+export default UserProfile;

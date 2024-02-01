@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
 
-const Color = sequelize.define('Color', {
+const PhoneBrand = sequelize.define('PhoneBrand', {
   Id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -27,12 +27,11 @@ const Color = sequelize.define('Color', {
   Name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     field: 'Name'
   }
 }, {
-  tableName: 'colors',
-  timestamps: false
+  tableName: 'phoneBrands',
+  timestamps: false 
 });
 
-export default Color;
+export default PhoneBrand;

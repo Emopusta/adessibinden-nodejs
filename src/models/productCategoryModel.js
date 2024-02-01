@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
 
-const Color = sequelize.define('Color', {
+const ProductCategory = sequelize.define('ProductCategory', {
   Id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -25,14 +25,13 @@ const Color = sequelize.define('Color', {
     field: 'DeletedDate'
   },
   Name: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING, 
     allowNull: false,
-    unique: true,
     field: 'Name'
   }
 }, {
-  tableName: 'colors',
-  timestamps: false
+  tableName: 'productCategories',
+  timestamps: false 
 });
 
-export default Color;
+export default ProductCategory;
