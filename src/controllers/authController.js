@@ -11,7 +11,7 @@ const register = asyncHandler(async function (req, res){
 const login = asyncHandler(async function (req, res, next){
             const {email, password} = req.body
             const validUser = await req.authService.getUserWithEmail(email, password); 
-            if (!validUser) return next(errorHandler(404, "User not found!"));
+            if (!validUser) throw new errorHandler(404, "User not found!");
 
             const validPassword = await req.authService.verifyPassword(password, validUser.passwordHash, validUser.passwordSalt)
             if (!validPassword) throw new errorHandler(401, "Wrong Password");
