@@ -7,6 +7,8 @@ import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { sequelize } from "./config/database.js";
 import cors from 'cors';
+import https from 'https'
+import fs from 'fs'
 
 dotenv.config();
 const port = process.env.PORT || 8000;
@@ -36,4 +38,10 @@ app.use(errorMiddleware);
 
 // sequelize.sync().catch(err => console.log(err));
 
-app.listen(port, function(){ console.log(`Server is running on port ${port}`)});
+
+const sslServer = https.createServer({
+    key: fs.readFileSync("./cert/key.pem"),
+    cert: fs.readFileSync("./cert/cert.pem")
+}, app)
+
+sslServer.listen(port, function(){ console.log(`Server is running on port ${port}`)});
