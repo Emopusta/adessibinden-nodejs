@@ -6,9 +6,9 @@ import { authorizeUser } from "../middlewares/authorizeUser.js";
 const router = express.Router();
 
 
-router.post("/login", login);
-router.post("/register", register);
-router.post("/logout", authorizeUser,  logout);
+router.post("/Login", login);
+router.post("/Register", register);
+router.post("/Logout", authorizeUser,  logout);
 router.get("/RefreshToken", refreshToken);
 
 
