@@ -14,7 +14,7 @@ const login = asyncHandler(async function (req, res, next){
             const {email, password} = req.body
             const validUser = await req.authService.getUserWithEmail(email, password); 
             if (!validUser) throw new errorHandler(404, "User not found!");
-
+            
             const validPassword = await req.authService.verifyPassword(password, validUser.PasswordHash, validUser.PasswordSalt)
             if (!validPassword) throw new errorHandler(401, "Wrong Password");
 
@@ -24,9 +24,8 @@ const login = asyncHandler(async function (req, res, next){
                 httpOnly: true
             })
 
-            generateToken(res, validUser.id)
-            const{ PasswordHash:passHash, PasswordSalt:passSalt, ...rest } = validUser.dataValues;
-            res.status(200).json({rest})  
+            const accessToken = generateToken(res, validUser.id)
+            res.status(200).json({data:{accessToken:{token:accessToken}}, error:null, success:true})  
 })
 
 
