@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import colorRoutes from "./routes/colorRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import userProfileRoutes from "./routes/userProfileRoutes.js";
 import serviceRegistrer from "./middlewares/serviceRegistrer.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -24,6 +25,7 @@ app.use(cookieParser())
 app.use(serviceRegistrer)
 app.use("/api/colors", colorRoutes);
 app.use("/api/Auth", authRoutes);
+app.use("/api/UserProfiles", userProfileRoutes);
 
 
 app.get("/", async function(req, res){

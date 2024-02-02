@@ -12,6 +12,7 @@ const UserProfile = sequelize.define('UserProfile', {
   },
   CreatedDate: {
     type: DataTypes.DATE,
+    defaultValue: new Date(),
     allowNull: false,
     field: 'CreatedDate'
   },
