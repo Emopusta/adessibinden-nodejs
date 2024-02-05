@@ -1,6 +1,7 @@
 import { getAllColors, createColor } from "../services/colorService.js";
 import { registerUser, logoutUser, getUserWithEmail, verifyPassword, createRefreshToken } from "../services/authService.js";
 import { getByUserIdUserProfile, createUserProfile } from "../services/userProfileService.js"
+import { getPhoneProductByProductId } from "../services/phoneProductService.js"
 
 function colorService(){
     return Object.freeze({
@@ -26,12 +27,19 @@ function userProfileService(){
     })
 }
 
+function phoneProductService(){
+    return Object.freeze({
+        getPhoneProductByProductId,
+    })
+}
+
 async function serviceRegistrer(req, res, next){
 
     try {
         req.colorService = colorService();
         req.authService = authService();
         req.userProfileService = userProfileService();
+        req.phoneProductService = phoneProductService();
         next()
     } catch (error) {
         console.error(error);

@@ -4,6 +4,7 @@ import Color from './colorModel.js';
 import PhoneInternalMemory from './phoneInternalMemory.js';
 import PhoneModel from './phoneModelModel.js';
 import PhoneRAM from './phoneRAMModel.js';
+import Product from './productModel.js';
 
 
 const PhoneProduct = sequelize.define('PhoneProduct', {
