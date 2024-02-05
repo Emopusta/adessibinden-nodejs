@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/Login", login);
 router.post("/Register", register);
-router.post("/Logout", authorizeUser,  logout);
+router.get("/Logout", authorizeUser,  logout);
 router.get("/RefreshToken", refreshToken);
 
 

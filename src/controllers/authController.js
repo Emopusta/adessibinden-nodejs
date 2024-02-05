@@ -24,24 +24,30 @@ const login = asyncHandler(async function (req, res, next){
             res.cookie("refresh-token", refreshToken.Token, {
                 httpOnly: true
             })
-
+            
             const accessToken = generateToken(res, (await validUser).dataValues.Id, email)
+            
+            
+            const addSevenDays = 24*7*3600000
+            const expireDate = new Date(Date.now() + addSevenDays);
 
-            const currentDate = new Date();
-            const expireDate = new Date(currentDate);
-            expireDate.setDate(currentDate.getDate() + 7);
+            res.cookie("access-token", accessToken, {
+                httpOnly: true, expires: expireDate
+            })
 
             res.status(200).json({data:{accessToken:{token:accessToken, expiration: expireDate}}, error:null, success:true})  
 })
 
 
 const logout = asyncHandler(async function (req, res){
-    res.cookie("token", "", {
-        httpOnly: true,
-        expires: new Date(0),
-    });
+    res.clearCookie("refresh-token", {
+                httpOnly: true
+            });
+    res.clearCookie("access-token", {
+        httpOnly: true
+    });        
     const response = req.authService.logoutUser();
-    res.status(400).json((await response))
+    res.status(200).json((await response))
 })
 
 const refreshToken = asyncHandler(async function(req, res){
@@ -57,7 +63,7 @@ const refreshToken = asyncHandler(async function(req, res){
         httpOnly: true
     })
 
-    var accessToken = generateToken(res, user.id, user.dataValues.email)
+    var accessToken = generateToken(res, user.dataValues.Id, user.dataValues.email)
 
     const currentDate = new Date();
     const expireDate = new Date(currentDate);
