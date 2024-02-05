@@ -1,5 +1,11 @@
 import PhoneProduct from '../models/phoneProduct.js'
 
-export function getPhoneProductByProductId(productId){
+function getPhoneProductByProductId(productId){
     return PhoneProduct.findOne({where: { ProductId : productId }})
+}
+
+export default function phoneProductService(){
+    return Object.freeze({
+        getPhoneProductByProductId,
+    })
 }

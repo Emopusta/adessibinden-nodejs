@@ -2,14 +2,20 @@ import Color from "../models/colorModel.js"
 
 
 
-    export function getAllColors(){
+    function getAllColors(){
         return Color.findAll();
     }
 
-    export function createColor(colorName){
+    function createColor(colorName){
         return Color.create({ name:colorName });
     }
 
 
 
 
+    export default function colorService(){
+        return Object.freeze({
+            getAllColors,
+            createColor,
+        })
+    }

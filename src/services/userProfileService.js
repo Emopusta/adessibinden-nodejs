@@ -1,6 +1,6 @@
 import UserProfile from "../models/userProfileModel.js"
 
-    export function createUserProfile(createUserProfileDto){
+    function createUserProfile(createUserProfileDto){
         const {userId, firstName, lastName, address, birthDate} = createUserProfileDto;
         return UserProfile.create({
             UserId:userId ,
@@ -11,8 +11,15 @@ import UserProfile from "../models/userProfileModel.js"
            })
     }
      
-    export function getByUserIdUserProfile(userId){
+    function getByUserIdUserProfile(userId){
         return UserProfile.findOne({where: {UserId:userId}});
     }
 
 
+
+    export default function userProfileService(){
+        return Object.freeze({
+            getByUserIdUserProfile,
+            createUserProfile,
+        })
+    }
