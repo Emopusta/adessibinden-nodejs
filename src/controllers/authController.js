@@ -8,7 +8,7 @@ const register = asyncHandler(async function (req, res){
     const {email, password} = req.body
     const response = req.authService.registerUser(email, password);
     const userProfile = req.userProfileService.createUserProfile({userId: (await response).dataValues.Id})
-    res.status(400).json((await response))
+    res.status(200).json((await response))
 })
 
 const login = asyncHandler(async function (req, res, next){
