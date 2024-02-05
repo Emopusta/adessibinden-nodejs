@@ -10,7 +10,7 @@ import asyncHandler from "../middlewares/asyncHandler.js";
         const {name} = req.body;
         const response = req.colorService.createColor(name);
 
-        res.status(400).json((await response).dataValues)
+        res.status(200).json({data:(await response).dataValues, error:null, success:true})
     })
     
     export {getAllColors, createColor};

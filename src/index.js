@@ -23,7 +23,7 @@ app.use(cors({origin: 'https://localhost:44342', credentials:true}));
 app.use(cookieParser())
 
 app.use(serviceRegistrer)
-app.use("/api/colors", colorRoutes);
+app.use("/api/Colors", colorRoutes);
 app.use("/api/Auth", authRoutes);
 app.use("/api/UserProfiles", userProfileRoutes);
 

@@ -4,7 +4,7 @@ import { authorizeUser } from "../middlewares/authorizeUser.js";
 
 const router = express.Router();
 
-router.get("/get-colors", authorizeUser, getAllColors);
+router.get("/", authorizeUser, getAllColors);
 router.post("/create-color", createColor);
 
 
