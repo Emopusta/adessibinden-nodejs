@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export function generateToken(res, validUserId){
-    const token = jwt.sign({id:validUserId}, process.env.JWT_SECRET, {algorithm: 'HS512'})
-    res.cookie('token', token, {httpOnly: true })
+export function generateToken(res, validUserId, email){
+    const token = jwt.sign({'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier':validUserId.toString(), 'email': email.toString()}, process.env.JWT_SECRET, {algorithm: 'HS512'})
     return token;
 }

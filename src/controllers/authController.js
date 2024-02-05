@@ -7,6 +7,7 @@ import { generateToken } from "../utils/generateToken.js";
 const register = asyncHandler(async function (req, res){
     const {email, password} = req.body
     const response = req.authService.registerUser(email, password);
+    const userProfile = req.userProfileService.createUserProfile({userId: (await response).dataValues.Id})
     res.status(400).json((await response))
 })
 
@@ -24,8 +25,13 @@ const login = asyncHandler(async function (req, res, next){
                 httpOnly: true
             })
 
-            const accessToken = generateToken(res, validUser.id)
-            res.status(200).json({data:{accessToken:{token:accessToken}}, error:null, success:true})  
+            const accessToken = generateToken(res, (await validUser).dataValues.Id, email)
+
+            const currentDate = new Date();
+            const expireDate = new Date(currentDate);
+            expireDate.setDate(currentDate.getDate() + 7);
+
+            res.status(200).json({data:{accessToken:{token:accessToken, expiration: expireDate}}, error:null, success:true})  
 })
 
 
@@ -51,9 +57,13 @@ const refreshToken = asyncHandler(async function(req, res){
         httpOnly: true
     })
 
-    var accessToken = generateToken(res, user.id)
+    var accessToken = generateToken(res, user.id, user.dataValues.email)
 
-    res.status(200).json({AccessToken:accessToken});
+    const currentDate = new Date();
+    const expireDate = new Date(currentDate);
+    expireDate.setDate(currentDate.getDate() + 7);
+
+    res.status(200).json({data:{accessToken:{token:accessToken, expiration: expireDate}}, error:null, success:true});
 })
 
 export {register, login, logout, refreshToken};
