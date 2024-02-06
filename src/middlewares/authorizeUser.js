@@ -12,6 +12,4 @@ export function authorizeUser(req, res, next){
         req.user = user;
         next();
     })
-    
-
 }

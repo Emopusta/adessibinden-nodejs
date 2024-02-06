@@ -6,5 +6,4 @@ const getPhoneProductByProductId = asyncHandler(async function(req, res){
     res.status(200).json({data:(await response), error:null, success:true})
 })
 
-
 export { getPhoneProductByProductId }

@@ -2,7 +2,6 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 import PhoneBrand from './phoneBrandModel.js';
 
-
 const PhoneModel = sequelize.define('PhoneModel', {
   Id: {
     type: DataTypes.INTEGER,
@@ -39,7 +38,6 @@ const PhoneModel = sequelize.define('PhoneModel', {
   tableName: 'phoneModels',
   timestamps: false 
 });
-
 
 PhoneModel.belongsTo(PhoneBrand, { foreignKey: 'BrandId', onDelete: 'SET NULL', as: 'Brand' });
 

@@ -7,5 +7,4 @@ const router = express.Router();
 router.get("/", authorizeUser, getAllColors);
 router.post("/create-color", createColor);
 
-
 export default router;

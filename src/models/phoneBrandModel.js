@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
-
 const PhoneBrand = sequelize.define('PhoneBrand', {
   Id: {
     type: DataTypes.INTEGER,

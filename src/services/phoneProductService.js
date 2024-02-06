@@ -17,7 +17,13 @@ async function getPhoneProductByProductId(productId){
             {model: PhoneInternalMemory, as: 'InternalMemory'},
         ]});
 
-    const {Color: color, Product: product,Model: phoneModel, RAM: phoneRAM, InternalMemory: phoneInternalMemory,  ...rest} = (await phoneProduct).dataValues;
+    const {Color: color,
+         Product: product,
+         Model: phoneModel,
+         RAM: phoneRAM, 
+         InternalMemory: phoneInternalMemory,  
+         ...rest
+        } = (await phoneProduct).dataValues;
 
     const result = { 
         ProductDescription: product.Description,

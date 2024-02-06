@@ -9,8 +9,6 @@ async function errorMiddleware(err, req, res, next){
         },
         success: false,
     });
-
 }
-
 
 export default errorMiddleware

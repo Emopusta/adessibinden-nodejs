@@ -2,7 +2,6 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 import RefreshToken from './refreshTokenModel.js';
 
-
 const User = sequelize.define('User', {
   Id: {
     type: DataTypes.INTEGER,

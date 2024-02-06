@@ -50,7 +50,6 @@ const UserProfile = sequelize.define('UserProfile', {
   timestamps: false 
 });
 
-
 UserProfile.belongsTo(User, { foreignKey: 'UserId', onDelete: 'SET NULL', as: 'User' });
 
 export default UserProfile;

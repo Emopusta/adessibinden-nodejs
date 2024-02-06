@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
-
 const Color = sequelize.define('Color', {
   Id: {
     type: DataTypes.INTEGER,

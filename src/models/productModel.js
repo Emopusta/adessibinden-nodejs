@@ -3,7 +3,6 @@ import { sequelize } from "../config/database.js";
 import  User  from './userModel.js';
 import ProductCategory from './productCategoryModel.js';
 
-
 const Product = sequelize.define('Product', {
   Id: {
     type: DataTypes.INTEGER,

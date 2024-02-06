@@ -12,19 +12,14 @@ import RefreshToken from "../models/refreshTokenModel.js";
     async function verifyPassword(password, hash, salt){
         const hmac = new Hashes.SHA512
         const verify = hmac.hex_hmac(salt, password)
-
         return hash == verify ? true : false;
-    
     }
 
     async function getUserWithEmail(email){
-        
         const user = await User.findOne({
             where: {Email: email}
         });
-        
         return user
-
     }
 
     async function createRefreshToken(user, ipAddress){
@@ -39,7 +34,6 @@ import RefreshToken from "../models/refreshTokenModel.js";
                 Expires: newDate,
                 CreatedByIp: ipAddress
             });
-
         return refreshToken;
     }
 
@@ -50,10 +44,8 @@ import RefreshToken from "../models/refreshTokenModel.js";
     }
 
     async function logoutUser(){
-
         return {message: "Logged Out."};
     }
-
 
     export default function authService(){
         return Object.freeze({

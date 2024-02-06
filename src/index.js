@@ -41,7 +41,6 @@ app.use(errorMiddleware);
 
 // sequelize.sync().catch(err => console.log(err));
 
-
 const sslServer = https.createServer({
     key: fs.readFileSync("./cert/key.pem"),
     cert: fs.readFileSync("./cert/cert.pem")

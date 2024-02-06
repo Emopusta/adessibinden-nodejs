@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
-
 const PhoneInternalMemory = sequelize.define('PhoneInternalMemory', {
   Id: {
     type: DataTypes.INTEGER,

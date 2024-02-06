@@ -15,8 +15,6 @@ import UserProfile from "../models/userProfileModel.js"
         return UserProfile.findOne({where: {UserId:userId}});
     }
 
-
-
     export default function userProfileService(){
         return Object.freeze({
             getByUserIdUserProfile,

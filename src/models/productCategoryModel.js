@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from "../config/database.js";
 
-
 const ProductCategory = sequelize.define('ProductCategory', {
   Id: {
     type: DataTypes.INTEGER,
