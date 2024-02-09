@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize';
-import { define } from '<your sequelize instance>';
-import Product from './productModel';
-import User from './userModel';
+import { sequelize } from "../config/database.js";
+import Product from './productModel.js';
+import User from './userModel.js';
 
-const UserFavouriteProduct = define('UserFavouriteProduct', {
+const UserFavouriteProduct = sequelize.define('UserFavouriteProduct', {
   ProductId: {
     type: DataTypes.INTEGER,
     allowNull: false,

@@ -4,6 +4,7 @@ import colorRoutes from "./routes/colorRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import userProfileRoutes from "./routes/userProfileRoutes.js";
 import phoneProductRoutes from "./routes/phoneProductRoutes.js";
+import userFavouriteProductRoutes from "./routes/userFavouriteProductRoutes.js";
 import serviceRegistrer from "./middlewares/serviceRegistrer.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -28,6 +29,7 @@ app.use("/api/Colors", colorRoutes);
 app.use("/api/Auth", authRoutes);
 app.use("/api/UserProfiles", userProfileRoutes);
 app.use("/api/PhoneProducts", phoneProductRoutes);
+app.use("/api/UserFavouriteProducts", userFavouriteProductRoutes);
 
 app.get("/", async function(req, res){
     res.send("adessibinden backend...");
