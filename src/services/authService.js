@@ -2,11 +2,11 @@ import Hashes from "jshashes";
 import User from "../models/userModel.js";
 import RefreshToken from "../models/refreshTokenModel.js";
 
-    function registerUser(email, password){
+    async function registerUser(email, password){
         const hmac = new Hashes.SHA512;
         const passwordSalt = hmac.hex(password+email)
         const passwordHash = hmac.hex_hmac(passwordSalt, password);
-        return User.create({Email:email, PasswordHash:passwordHash, PasswordSalt:passwordSalt});
+        return await User.create({Email:email, PasswordHash:passwordHash, PasswordSalt:passwordSalt});
     }
 
     async function verifyPassword(password, hash, salt){

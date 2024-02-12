@@ -1,8 +1,8 @@
 import UserProfile from "../models/userProfileModel.js"
 
-    function createUserProfile(createUserProfileDto){
+    async function createUserProfile(createUserProfileDto){
         const {userId, firstName, lastName, address, birthDate} = createUserProfileDto;
-        return UserProfile.create({
+        return await UserProfile.create({
             UserId:userId ,
             FirstName:firstName, 
             LastName:lastName,  
@@ -11,8 +11,8 @@ import UserProfile from "../models/userProfileModel.js"
            })
     }
      
-    function getByUserIdUserProfile(userId){
-        return UserProfile.findOne({where: {UserId:userId}});
+    async function getByUserIdUserProfile(userId){
+        return await UserProfile.findOne({where: {UserId:userId}});
     }
 
     export default function userProfileService(){

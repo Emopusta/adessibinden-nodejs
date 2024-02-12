@@ -7,7 +7,7 @@ import Product from '../models/productModel.js';
 import User from '../models/userModel.js';
 
 async function getPhoneProductByProductId(productId){
-    const phoneProduct = PhoneProduct.findOne({
+    const phoneProduct = await PhoneProduct.findOne({
         where: { ProductId : productId },
         include:[
             {model: Color, as: 'Color'},
@@ -23,7 +23,7 @@ async function getPhoneProductByProductId(productId){
          RAM: phoneRAM, 
          InternalMemory: phoneInternalMemory,  
          ...rest
-        } = (await phoneProduct).dataValues;
+        } = phoneProduct.dataValues;
 
     const result = { 
         ProductDescription: product.Description,
