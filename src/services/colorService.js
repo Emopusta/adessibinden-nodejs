@@ -1,11 +1,16 @@
 import Color from "../models/colorModel.js"
 
-    function getAllColors(){
-        return Color.findAll();
+    async function getAllColors(){
+        var colors = await Color.findAll({where: { DeletedDate: null}});
+        var result = colors.map((element) => ({
+            Id: element.dataValues.Id,
+            Name: element.dataValues.Name,
+        }));
+        return result;
     }
 
-    function createColor(colorName){
-        return Color.create({ name:colorName });
+    async function createColor(colorName){
+        return await Color.create({ name:colorName });
     }
 
     export default function colorService(){
