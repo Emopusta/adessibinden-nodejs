@@ -4,7 +4,7 @@ import { getByUserIdUserProfile, createUserProfile } from "../controllers/userPr
 
 const router = express.Router();
 
-router.get("/GetById/:userId", getByUserIdUserProfile);
+router.get("/GetById", getByUserIdUserProfile);
 router.post("/", createUserProfile);
 
 export default router;

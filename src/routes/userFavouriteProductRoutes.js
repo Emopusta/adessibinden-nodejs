@@ -4,8 +4,8 @@ import { deleteUserFavouriteProduct, getByProductAndUserIdUserFavouriteProduct, 
 
 const router = express.Router();
 
-router.get("/GetByUserId/:userId", getByUserIdUserFavouriteProduct)
-router.get("/GetByProductIdAndUserId/:userId/:productId", getByProductAndUserIdUserFavouriteProduct)
+router.get("/GetByUserId", getByUserIdUserFavouriteProduct)
+router.get("/GetByProductIdAndUserId", getByProductAndUserIdUserFavouriteProduct)
 router.delete("/:userId/:productId", deleteUserFavouriteProduct)
 router.post("/", addUserFavouriteProduct)
 

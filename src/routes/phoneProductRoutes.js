@@ -4,6 +4,6 @@ import { getPhoneProductByProductId } from "../controllers/phoneProductControlle
 
 const router = express.Router();
 
-router.get("/:productId", getPhoneProductByProductId)
+router.get("/", getPhoneProductByProductId)
 
 export default router;

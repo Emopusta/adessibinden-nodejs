@@ -1,7 +1,7 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 
 const getByUserIdUserProfile = asyncHandler(async function(req, res){
-    const userId = parseInt(req.params.userId);
+    const userId = req.query.UserId;
     const response = req.userProfileService.getByUserIdUserProfile(userId);
     res.status(200).json({data:(await response), error:null, success:true});
 });
