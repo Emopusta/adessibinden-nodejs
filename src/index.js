@@ -9,6 +9,7 @@ import productCategoryRoutes from "./routes/productCategoryRoutes.js";
 import phoneBrandRoutes from "./routes/phoneBrandRoutes.js";
 import phoneInternalMemoryRoutes from "./routes/phoneInternalMemoryRoutes.js";
 import phoneRAMRoutes from "./routes/phoneRAMRoutes.js";
+import phoneModelRoutes from "./routes/phoneModelRoutes.js";
 import serviceRegistrer from "./middlewares/serviceRegistrer.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -38,6 +39,7 @@ app.use("/api/ProductCategories", productCategoryRoutes);
 app.use("/api/PhoneBrands", phoneBrandRoutes);
 app.use("/api/PhoneInternalMemories", phoneInternalMemoryRoutes);
 app.use("/api/PhoneRAMs", phoneRAMRoutes);
+app.use("/api/PhoneModels", phoneModelRoutes);
 
 app.get("/", async function(req, res){
     res.send("adessibinden backend...");
