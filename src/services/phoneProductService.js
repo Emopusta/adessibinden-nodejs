@@ -5,6 +5,7 @@ import PhoneModel from '../models/phoneModelModel.js';
 import PhoneProduct from '../models/phoneProductModel.js'
 import PhoneRAM from '../models/phoneRAMModel.js';
 import Product from '../models/productModel.js';
+import UserFavouriteProduct from '../models/userFavouriteProductModel.js';
 import User from '../models/userModel.js';
 
 async function getPhoneProductByProductId(productId){
@@ -83,9 +84,22 @@ async function getByIdDetailsForUpdatePhoneProduct(productId){
     return result;
 }
 
+async function deletePhoneProduct(productId){
+    const userFavouriteProducts = await UserFavouriteProduct.destroy({where: { ProductId:productId }});
+    const phoneProduct = await PhoneProduct.findOne({where: { ProductId:productId }});
+    const product = await Product.findOne({where: { Id:productId }});
+    phoneProduct.DeletedDate = new Date();
+    product.DeletedDate = new Date();
+    await phoneProduct.save();
+    await product.save();
+
+    return { productId: productId };
+}
+
 export default function phoneProductService(){
     return Object.freeze({
         getPhoneProductByProductId,
         getByIdDetailsForUpdatePhoneProduct,
+        deletePhoneProduct,
     })
 }
