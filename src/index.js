@@ -6,6 +6,7 @@ import userProfileRoutes from "./routes/userProfileRoutes.js";
 import phoneProductRoutes from "./routes/phoneProductRoutes.js";
 import userFavouriteProductRoutes from "./routes/userFavouriteProductRoutes.js";
 import productCategoryRoutes from "./routes/productCategoryRoutes.js";
+import phoneBrandRoutes from "./routes/phoneBrandRoutes.js";
 import serviceRegistrer from "./middlewares/serviceRegistrer.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -32,6 +33,7 @@ app.use("/api/UserProfiles", userProfileRoutes);
 app.use("/api/PhoneProducts", phoneProductRoutes);
 app.use("/api/UserFavouriteProducts", userFavouriteProductRoutes);
 app.use("/api/ProductCategories", productCategoryRoutes);
+app.use("/api/PhoneBrands", phoneBrandRoutes);
 
 app.get("/", async function(req, res){
     res.send("adessibinden backend...");
@@ -39,8 +41,8 @@ app.get("/", async function(req, res){
 
 app.use(function (req, res, next){
     res.status(404).send('<h1>Page not found</h1>')
-    
 })
+
 app.use(errorMiddleware);
 
 // sequelize.sync().catch(err => console.log(err));

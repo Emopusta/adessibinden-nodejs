@@ -4,6 +4,7 @@ import userProfileService from "../services/userProfileService.js";
 import phoneProductService from "../services/phoneProductService.js";
 import userFavouriteProductService from "../services/userFavouriteProductService.js";
 import productCategoryService from "../services/productCategoryService.js";
+import phoneBrandService from "../services/phoneBrandService.js";
 
 async function serviceRegistrer(req, res, next){
     try {
@@ -13,6 +14,7 @@ async function serviceRegistrer(req, res, next){
         req.phoneProductService = phoneProductService();
         req.userFavouriteProductService = userFavouriteProductService();
         req.productCategoryService = productCategoryService();
+        req.phoneBrandService = phoneBrandService();
         next()
     } catch (error) {
         console.error(error);
