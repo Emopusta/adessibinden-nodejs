@@ -12,7 +12,7 @@ import UserProfile from "../models/userProfileModel.js"
     }
      
     async function getByUserIdUserProfile(userId){
-        return await UserProfile.findOne({where: {UserId:userId}});
+        return await UserProfile.findOne({where: {UserId:userId , DeletedDate : null}});
     }
 
     export default function userProfileService(){

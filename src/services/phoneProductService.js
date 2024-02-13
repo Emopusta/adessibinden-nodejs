@@ -10,7 +10,7 @@ import User from '../models/userModel.js';
 
 async function getPhoneProductByProductId(productId){
     const phoneProduct = await PhoneProduct.findOne({
-        where: { ProductId : productId },
+        where: { ProductId : productId, DeletedDate : null },
         include:[
             {model: Color, as: 'Color'},
             {model: Product, as: 'Product' , include: [{model: User, as: 'CreatorUser'}]},
@@ -44,7 +44,7 @@ async function getPhoneProductByProductId(productId){
 
 async function getByIdDetailsForUpdatePhoneProduct(productId){
     const phoneProduct = await PhoneProduct.findOne({
-        where: { ProductId : productId },
+        where: { ProductId : productId, DeletedDate : null },
         include:[
             {model: Color, as: 'Color'},
             {model: Product, as: 'Product' , include: [{model: User, as: 'CreatorUser'}]},
@@ -85,9 +85,9 @@ async function getByIdDetailsForUpdatePhoneProduct(productId){
 }
 
 async function deletePhoneProduct(productId){
-    const userFavouriteProducts = await UserFavouriteProduct.destroy({where: { ProductId:productId }});
-    const phoneProduct = await PhoneProduct.findOne({where: { ProductId:productId }});
-    const product = await Product.findOne({where: { Id:productId }});
+    const userFavouriteProducts = await UserFavouriteProduct.destroy({where: { ProductId:productId , DeletedDate : null }});
+    const phoneProduct = await PhoneProduct.findOne({where: { ProductId:productId, DeletedDate : null }});
+    const product = await Product.findOne({where: { Id:productId, DeletedDate : null }});
     phoneProduct.DeletedDate = new Date();
     product.DeletedDate = new Date();
     await phoneProduct.save();
