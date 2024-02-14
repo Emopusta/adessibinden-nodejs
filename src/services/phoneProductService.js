@@ -96,10 +96,38 @@ async function deletePhoneProduct(productId){
     return { productId: productId };
 }
 
+async function updatePhoneProduct(updatePhoneProductDto){
+    updateProduct(updatePhoneProductDto.productId, updatePhoneProductDto.creatorUserId, updatePhoneProductDto.productCategoryId, updatePhoneProductDto.description, updatePhoneProductDto.title)
+    
+    const phoneProduct = await PhoneProduct.findOne({where: { ProductId:updatePhoneProductDto.productId, DeletedDate : null }});
+    phoneProduct.ProductId = updatePhoneProductDto.productId;
+    phoneProduct.ColorId = updatePhoneProductDto.colorId;
+    phoneProduct.ModelId = updatePhoneProductDto.modelId;
+    phoneProduct.InternalMemoryId = updatePhoneProductDto.internalMemoryId;
+    phoneProduct.RAMId = updatePhoneProductDto.ramId;
+    phoneProduct.UsageStatus = updatePhoneProductDto.usageStatus;
+    phoneProduct.Price = updatePhoneProductDto.price;
+    phoneProduct.save();
+
+    return phoneProduct;
+}
+
+async function updateProduct(productId, creatorUserId, productCategoryId, description, title){
+    const product = await Product.findOne({where: { Id:productId, DeletedDate : null }});
+
+    product.Id = productId;
+    product.Description = description;
+    product.Title = title;
+    product.CreatorUserId = creatorUserId;
+    product.ProductCategoryId = productCategoryId;
+    await product.save();
+}
+
 export default function phoneProductService(){
     return Object.freeze({
         getPhoneProductByProductId,
         getByIdDetailsForUpdatePhoneProduct,
         deletePhoneProduct,
+        updatePhoneProduct,
     })
 }

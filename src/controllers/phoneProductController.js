@@ -18,4 +18,10 @@ const deletePhoneProduct = asyncHandler(async function(req, res){
     res.status(200).json({data:(await response), error:null, success:true})
 })
 
-export { getPhoneProductByProductId, getByIdDetailsForUpdatePhoneProduct, deletePhoneProduct }
+const updatePhoneProduct = asyncHandler(async function(req, res){
+    const updatePhoneProductDto = req.body;
+    const response = req.phoneProductService.updatePhoneProduct(updatePhoneProductDto);
+    res.status(200).json({data:(await response), error:null, success:true})
+})
+
+export { getPhoneProductByProductId, getByIdDetailsForUpdatePhoneProduct, deletePhoneProduct, updatePhoneProduct }
