@@ -8,6 +8,7 @@ import phoneBrandService from "../services/phoneBrandService.js";
 import phoneInternalMemoryService from "../services/phoneInternalMemoryService.js";
 import phoneRAMService from "../services/phoneRAMService.js";
 import phoneModelService from "../services/phoneModelService.js";
+import productService from "../services/productService.js";
 
 async function serviceRegistrer(req, res, next){
     try {
@@ -21,6 +22,7 @@ async function serviceRegistrer(req, res, next){
         req.phoneInternalMemoryService = phoneInternalMemoryService();
         req.phoneRAMService = phoneRAMService();
         req.phoneModelService = phoneModelService();
+        req.productService = productService();
         next()
     } catch (error) {
         console.error(error);
