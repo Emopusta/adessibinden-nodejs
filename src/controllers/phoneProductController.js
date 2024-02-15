@@ -1,5 +1,11 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 
+const createPhoneProduct = asyncHandler(async function(req, res){
+    const createPhoneProductDto = req.body;
+    const response = req.phoneProductService.createPhoneProduct(createPhoneProductDto);
+    res.status(200).json({data:(await response), error:null, success:true})
+})
+
 const getPhoneProductByProductId = asyncHandler(async function(req, res){
     const productId = req.query.ProductId;
     const response = req.phoneProductService.getPhoneProductByProductId(productId);
@@ -24,4 +30,4 @@ const updatePhoneProduct = asyncHandler(async function(req, res){
     res.status(200).json({data:(await response), error:null, success:true})
 })
 
-export { getPhoneProductByProductId, getByIdDetailsForUpdatePhoneProduct, deletePhoneProduct, updatePhoneProduct }
+export { getPhoneProductByProductId, getByIdDetailsForUpdatePhoneProduct, deletePhoneProduct, updatePhoneProduct, createPhoneProduct }

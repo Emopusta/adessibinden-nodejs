@@ -8,6 +8,38 @@ import Product from '../models/productModel.js';
 import UserFavouriteProduct from '../models/userFavouriteProductModel.js';
 import User from '../models/userModel.js';
 
+async function createPhoneProduct(createPhoneProductDto){
+
+    var createdProduct = await Product.create({
+        ProductCategoryId: createPhoneProductDto.productCategoryId,
+        Title: createPhoneProductDto.title,
+        Description: createPhoneProductDto.description,
+        CreatorUserId: createPhoneProductDto.creatorUserId,
+    })
+
+    var createdPhoneProduct = await PhoneProduct.create({
+        ProductId: createdProduct.dataValues.Id,
+        ColorId: createPhoneProductDto.colorId,
+        ModelId: createPhoneProductDto.modelId,
+        InternalMemoryId: createPhoneProductDto.internalMemoryId,
+        RAMId: createPhoneProductDto.ramId,
+        UsageStatus: createPhoneProductDto.usageStatus,
+        Price: createPhoneProductDto.price,
+    });
+
+    return {
+        ProductCategoryId: createdProduct.dataValues.ProductCategoryId,
+        CreatorUserId: createdProduct.dataValues.CreatorUserId,
+        ProductId: createdProduct.dataValues.Id,
+        ColorId: createdPhoneProduct.dataValues.ColorId,
+        ModelId: createdPhoneProduct.dataValues.ModelId,
+        InternalMemoryId: createdPhoneProduct.dataValues.InternalMemoryId,
+        RAMId: createdPhoneProduct.dataValues.RAMId,
+        UsageStatus: createdPhoneProduct.dataValues.UsageStatus,
+        Price: Number(createdPhoneProduct.dataValues.Price.replace(/[^0-9.-]+/g,"")),
+    }
+}
+
 async function getPhoneProductByProductId(productId){
     const phoneProduct = await PhoneProduct.findOne({
         where: { ProductId : productId, DeletedDate : null },
@@ -129,5 +161,6 @@ export default function phoneProductService(){
         getByIdDetailsForUpdatePhoneProduct,
         deletePhoneProduct,
         updatePhoneProduct,
+        createPhoneProduct,
     })
 }
