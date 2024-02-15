@@ -9,6 +9,7 @@ import phoneInternalMemoryService from "../services/phoneInternalMemoryService.j
 import phoneRAMService from "../services/phoneRAMService.js";
 import phoneModelService from "../services/phoneModelService.js";
 import productService from "../services/productService.js";
+import userOperationClaimService from "../services/userOperationClaimService.js";
 
 async function serviceRegistrer(req, res, next){
     try {
@@ -23,6 +24,7 @@ async function serviceRegistrer(req, res, next){
         req.phoneRAMService = phoneRAMService();
         req.phoneModelService = phoneModelService();
         req.productService = productService();
+        req.userOperationClaimService = userOperationClaimService();
         next()
     } catch (error) {
         console.error(error);

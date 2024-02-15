@@ -25,7 +25,7 @@ const login = asyncHandler(async function (req, res, next){
         httpOnly: true
     })
     
-    const accessToken = generateToken(res, (await validUser).dataValues.Id, email)
+    const accessToken = await generateToken(req, res, (await validUser).dataValues.Id, email)
     
     
     const addSevenDays = 24*7*3600000
@@ -61,7 +61,7 @@ const refreshToken = asyncHandler(async function(req, res){
         httpOnly: true
     })
 
-    var accessToken = generateToken(res, user.dataValues.Id, user.dataValues.email)
+    var accessToken = await generateToken(req, res, user.dataValues.Id, user.dataValues.email)
 
     const currentDate = new Date();
     const expireDate = new Date(currentDate);
