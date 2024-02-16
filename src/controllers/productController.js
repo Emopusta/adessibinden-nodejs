@@ -10,4 +10,11 @@ const getByCreatorUserIdProducts = asyncHandler(async function (req, res){
     const response = req.productService.getByCreatorUserIdProducts(creatorUserId);
     res.status(200).json({data:{items:(await response)}, error:null, success:true})
 })
-export { getAllProducts, getByCreatorUserIdProducts };
+
+const getByTitleProducts = asyncHandler(async function (req, res){
+    const productTitleToSearch = req.query.productTitleToSearch;
+    const response = req.productService.getByTitleProducts(productTitleToSearch);
+    res.status(200).json({data:{items:(await response)}, error:null, success:true})
+})
+
+export { getAllProducts, getByCreatorUserIdProducts, getByTitleProducts };

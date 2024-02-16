@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Product from "../models/productModel.js"
 
     async function getAllProducts(){
@@ -19,9 +20,20 @@ import Product from "../models/productModel.js"
         return result;
     }
 
+    async function getByTitleProducts(productTitleToSearch){
+        var products = await Product.findAll({where: { Title:{[Op.like]: '%' + productTitleToSearch + '%'}, DeletedDate: null}});
+        var result = products.map((element) => ({
+            Id: element.dataValues.Id,
+            Title: element.dataValues.Title,
+            Description: element.dataValues.Description,
+        }));
+        return result;
+    }
+
     export default function productService(){
         return Object.freeze({
             getAllProducts,
             getByCreatorUserIdProducts,
+            getByTitleProducts,
         })
     }
