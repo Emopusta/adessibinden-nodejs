@@ -6,7 +6,7 @@ import PhoneRAM from "../models/phoneRAMModel.js"
             Id: element.dataValues.Id,
             Memory: element.dataValues.Memory,
         }));
-        return result;
+        return {items: result};
     }
 
     export default function phoneRAMService(){

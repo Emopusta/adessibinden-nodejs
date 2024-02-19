@@ -10,5 +10,5 @@ export async function generateToken(req, res, validUserId, email){
         },
         process.env.JWT_SECRET,
         {algorithm: 'HS512'})
-    return token;
+    return {accessToken:{token:token, expiration: expireDate}};
 }

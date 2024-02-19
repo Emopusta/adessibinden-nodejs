@@ -8,7 +8,7 @@ import Product from "../models/productModel.js"
             Title: element.dataValues.Title,
             Description: element.dataValues.Description,
         }));
-        return result;
+        return {items: result};
     }
 
     async function getByCreatorUserIdProducts(creatorUserId){
@@ -17,7 +17,7 @@ import Product from "../models/productModel.js"
             ProductId: element.dataValues.Id,
             Title: element.dataValues.Title,
         }));
-        return result;
+        return {items: result};
     }
 
     async function getByTitleProducts(productTitleToSearch){
@@ -27,7 +27,7 @@ import Product from "../models/productModel.js"
             Title: element.dataValues.Title,
             Description: element.dataValues.Description,
         }));
-        return result;
+        return {items: result};
     }
 
     export default function productService(){

@@ -7,7 +7,7 @@ import UserFavouriteProduct from "../models/userFavouriteProductModel.js"
             ProductId: element.dataValues.Product.Id,
              ProductTitle:element.dataValues.Product.Title
             }));
-        return result;
+        return {items: result};
     }
 
     async function addUserFavouriteProduct(userId, productId){

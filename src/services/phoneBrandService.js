@@ -6,7 +6,7 @@ import PhoneBrand from "../models/phoneBrandModel.js"
             Id: element.dataValues.Id,
             Name: element.dataValues.Name,
         }));
-        return result;
+        return {items: result};
     }
 
     export default function phoneBrandService(){

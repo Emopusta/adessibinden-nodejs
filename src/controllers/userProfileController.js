@@ -1,15 +1,16 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
+import successDataResult from "../utils/successDataResult.js";
 
 const getByUserIdUserProfile = asyncHandler(async function(req, res){
     const userId = req.query.UserId;
-    const response = req.userProfileService.getByUserIdUserProfile(userId);
-    res.status(200).json({data:(await response), error:null, success:true});
+    const response = await req.userProfileService.getByUserIdUserProfile(userId);
+    res.status(200).json(successDataResult(response));
 });
 
 const createUserProfile = asyncHandler(async function(req, res){
     const createUserProfileDto = req.body;
-    const response = req.userProfileService.createUserProfile(createUserProfileDto)
-    res.status(200).json(await response)
+    const response = await req.userProfileService.createUserProfile(createUserProfileDto)
+    res.status(200).json(successDataResult(response))
 })
 
 export { getByUserIdUserProfile, createUserProfile }

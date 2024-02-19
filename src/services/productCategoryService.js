@@ -6,7 +6,7 @@ import ProductCategory from "../models/productCategoryModel.js"
             Id: element.dataValues.Id,
             Name: element.dataValues.Name,
         }));
-        return result;
+        return {items: result};
     }
 
     export default function productCategoryService(){

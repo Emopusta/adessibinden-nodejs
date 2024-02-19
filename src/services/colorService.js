@@ -6,7 +6,7 @@ import Color from "../models/colorModel.js"
             Id: element.dataValues.Id,
             Name: element.dataValues.Name,
         }));
-        return result;
+        return {items: result};
     }
 
     async function createColor(colorName){

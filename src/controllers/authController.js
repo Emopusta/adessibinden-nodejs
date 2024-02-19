@@ -3,12 +3,13 @@ import RefreshToken from "../models/refreshTokenModel.js";
 import User from "../models/userModel.js";
 import { errorHandler } from "../utils/errorHandler.js";
 import { generateToken } from "../utils/generateToken.js";
+import successDataResult from "../utils/successDataResult.js";
 
 const register = asyncHandler(async function (req, res){
     const {email, password} = req.body
-    const response = req.authService.registerUser(email, password);
+    const response = await req.authService.registerUser(email, password);
     const userProfile = req.userProfileService.createUserProfile({userId: (await response).dataValues.Id})
-    res.status(200).json((await response))
+    res.status(200).json(successDataResult(response))
 })
 
 const login = asyncHandler(async function (req, res, next){
@@ -35,7 +36,7 @@ const login = asyncHandler(async function (req, res, next){
         httpOnly: true, expires: expireDate
     })
 
-    res.status(200).json({data:{accessToken:{token:accessToken, expiration: expireDate}}, error:null, success:true})  
+    res.status(200).json(successDataResult(accessToken))  
 })
 
 const logout = asyncHandler(async function (req, res){
@@ -46,7 +47,7 @@ const logout = asyncHandler(async function (req, res){
         httpOnly: true
     });        
     const response = req.authService.logoutUser();
-    res.status(200).json((await response))
+    res.status(200).json(successDataResult(await response))
 })
 
 const refreshToken = asyncHandler(async function(req, res){
@@ -67,7 +68,7 @@ const refreshToken = asyncHandler(async function(req, res){
     const expireDate = new Date(currentDate);
     expireDate.setDate(currentDate.getDate() + 7);
 
-    res.status(200).json({data:{accessToken:{token:accessToken, expiration: expireDate}}, error:null, success:true});
+    res.status(200).json(successDataResult(accessToken));
 })
 
 export {register, login, logout, refreshToken};

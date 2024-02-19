@@ -6,7 +6,7 @@ import PhoneInternalMemory from "../models/phoneInternalMemory.js"
             Id: element.dataValues.Id,
             Capacity: element.dataValues.Capacity,
         }));
-        return result;
+        return {items: result};
     }
 
     export default function phoneInternalMemoryService(){
