@@ -1,8 +1,13 @@
 import { Op } from "sequelize";
 import Product from "../models/productModel.js"
 
-    async function getAllProducts(){
-        var products = await Product.findAll({where: { DeletedDate: null}});
+    async function getAllProducts(pageIndex, pageSize){
+        var products = await Product.findAll({
+            where: { DeletedDate: null },
+            limit: pageSize,
+            offset: pageIndex * pageSize,
+        });
+
         var result = products.map((element) => ({
             Id: element.dataValues.Id,
             Title: element.dataValues.Title,

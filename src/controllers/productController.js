@@ -2,8 +2,9 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import successDataResult from "../utils/successDataResult.js";
 
 const getAllProducts = asyncHandler(async function (req, res){
-    const response = req.productService.getAllProducts();
-    res.status(200).json({data:{items:(await response)}, error:null, success:true})
+    const pageIndex = req.query.PageIndex;
+    const pageSize = req.query.PageSize;
+    const response = req.productService.getAllProducts(pageIndex, pageSize);
     res.status(200).json(successDataResult(await response))
 })
 
