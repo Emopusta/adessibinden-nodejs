@@ -26,17 +26,13 @@ const login = asyncHandler(async function (req, res, next){
         httpOnly: true
     })
     
-    const accessToken = await generateToken(req, res, (await validUser).dataValues.Id, email)
-    
-    
-    const addSevenDays = 24*7*3600000
-    const expireDate = new Date(Date.now() + addSevenDays);
+    const tokenResponse = await generateToken(req, res, (await validUser).dataValues.Id, email)
 
-    res.cookie("access-token", accessToken, {
-        httpOnly: true, expires: expireDate
+    res.cookie("access-token", tokenResponse.accessToken.token, {
+        httpOnly: true, expires: tokenResponse.accessToken.expiration
     })
 
-    res.status(200).json(successDataResult(accessToken))  
+    res.status(200).json(successDataResult(tokenResponse))  
 })
 
 const logout = asyncHandler(async function (req, res){
@@ -63,10 +59,6 @@ const refreshToken = asyncHandler(async function(req, res){
     })
 
     var accessToken = await generateToken(req, res, user.dataValues.Id, user.dataValues.email)
-
-    const currentDate = new Date();
-    const expireDate = new Date(currentDate);
-    expireDate.setDate(currentDate.getDate() + 7);
 
     res.status(200).json(successDataResult(accessToken));
 })
