@@ -18,7 +18,7 @@ const login = asyncHandler(async function (req, res, next){
     if (!validUser) throw new errorHandler(404, "User not found!");
     
     const validPassword = await req.authService.verifyPassword(password, validUser.PasswordHash, validUser.PasswordSalt)
-    if (!validPassword) throw new errorHandler(401, "Wrong Password");
+    if (!validPassword) throw new errorHandler(400, "Wrong Password");
 
     
     const refreshToken = await req.authService.createRefreshToken(validUser, req.connection.remoteAddress);
