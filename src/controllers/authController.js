@@ -28,10 +28,6 @@ const login = asyncHandler(async function (req, res, next){
     
     const tokenResponse = await generateToken(req, res, (await validUser).dataValues.Id, email)
 
-    res.cookie("access-token", tokenResponse.accessToken.token, {
-        httpOnly: true, expires: tokenResponse.accessToken.expiration
-    })
-
     res.status(200).json(successDataResult(tokenResponse))  
 })
 
@@ -39,9 +35,7 @@ const logout = asyncHandler(async function (req, res){
     res.clearCookie("refresh-token", {
                 httpOnly: true
             });
-    res.clearCookie("access-token", {
-        httpOnly: true
-    });        
+     
     const response = req.authService.logoutUser();
     res.status(200).json(successDataResult(await response))
 })

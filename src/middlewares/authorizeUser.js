@@ -2,7 +2,8 @@ import { errorHandler } from "../utils/errorHandler.js";
 import jwt from 'jsonwebtoken';
 
 export function authorizeUser(req, res, next){
-    const token = req.cookies["access-token"];
+    const authorization = req.header('Authorization')
+    const [bearerString, token] = authorization.split(' ');
 
     if (!token) return next(errorHandler(403, "Unauthenticated."))
 
