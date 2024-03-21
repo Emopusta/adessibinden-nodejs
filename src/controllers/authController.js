@@ -8,8 +8,9 @@ import successDataResult from "../utils/successDataResult.js";
 const register = asyncHandler(async function (req, res){
     const {email, password} = req.body
     const response = await req.authService.registerUser(email, password);
+    const tokenResponse = await generateToken(req, res, response.dataValues.Id, response.dataValues.Email)
     const userProfile = req.userProfileService.createUserProfile({userId: (await response).dataValues.Id})
-    res.status(200).json(successDataResult(response))
+    res.status(200).json(successDataResult({accessToken: tokenResponse.accessToken, userId: response.dataValues.Id}))
 })
 
 const login = asyncHandler(async function (req, res, next){
