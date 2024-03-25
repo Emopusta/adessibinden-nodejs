@@ -13,4 +13,10 @@ const createUserProfile = asyncHandler(async function(req, res){
     res.status(200).json(successDataResult(response))
 })
 
-export { getByUserIdUserProfile, createUserProfile }
+const updateUserProfile = asyncHandler(async function(req, res){
+    const updateUserProfileDto = req.body;
+    const response = await req.userProfileService.updateUserProfile(updateUserProfileDto)
+    res.status(200).json(successDataResult(response))
+})
+
+export { getByUserIdUserProfile, createUserProfile, updateUserProfile }

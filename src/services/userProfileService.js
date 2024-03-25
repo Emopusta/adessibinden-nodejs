@@ -15,9 +15,23 @@ import UserProfile from "../models/userProfileModel.js"
         return await UserProfile.findOne({where: {UserId:userId , DeletedDate : null}});
     }
 
+    async function updateUserProfile(updateUserProfileDto){
+        
+        const userProfile = await UserProfile.findOne({where: { UserId:updateUserProfileDto.userId, DeletedDate : null }});
+        userProfile.UserId = updateUserProfileDto.userId;
+        userProfile.FirstName = updateUserProfileDto.firstName;
+        userProfile.LastName = updateUserProfileDto.lastName;
+        userProfile.Address = updateUserProfileDto.address;
+        userProfile.BirthDate = updateUserProfileDto.birthDate;
+        userProfile.save();
+    
+        return userProfile;
+    }
+
     export default function userProfileService(){
         return Object.freeze({
             getByUserIdUserProfile,
             createUserProfile,
+            updateUserProfile,
         })
     }
